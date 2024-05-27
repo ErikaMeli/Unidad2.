@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sylveon</title>
+</head>
+<body>
+
+    <style>
+        body{
+            background-color: rgb(247, 173, 197);
+        }
+        .pokeimg1{
+            position: absolute;
+
+        }
+        .pokeImg{
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top: 190px;
+            left: 130px;
+        }
+        button{
+            width: 50px;
+            height: 50px;
+            background-color: palevioletred;
+            border-color: pink;
+            border-radius: 50px;
+            position: absolute;
+            left: 62px;
+            top: 411px;
+        }
+        .placeholder{
+            width: 120px;
+            height: 40px;
+            position: absolute;
+
+        }
+    </style>
+    <img src="img/pokedex.jpg" alt="pokedex" width="800px">
+    <input type="text" placeholder="Sylveon" id="pokeName"
+    class="placeholder">
+    <img src = "img/pokebola.jpg"alt="Pokebola" id="pokeImg" width="250px" class="pokeImg">
+
+    <div id="pokename" class="pokeimg1" style="left: 135px; top:490px;font-size:25px;">Sylveon</div>
+    <div id="pokeHe" class="pokeimg1" style="left: 500px; top:320px;font-size:15px;">Altura</div>
+    <div id="pokeWe" class="pokeimg1" style="left: 560px; top:320px;font-size:15px;">Peso</div>
+    <div id="poketype" class="pokeimg1" style="left: 610px; top:320px;font-size:15px;">Tipo</div>
+    <div id="pokenitem" class="pokeimg1" style="left: 300px; top:300px;font-size:15px;"></div>
+    <div id="pokemove1" class="pokeimg1" style="left: 300px; top:300px;font-size:15px;"></div>
+    <div id="pokemove2" class="pokeimg1" style="left: 300px; top:300px;font-size:15px;"></div>
+    <div id="pokemove3" class="pokeimg1" style="left: 300px; top:300px;font-size:15px;"></div>
+    <div id="pokemove4" class="pokeimg1" style="left: 300px; top:300px;font-size:15px;"></div>
+
+    <div id="pokeid" class="pokeimg1" style="left: 300px; top:300px;font-size:15px;"></div>
+    <div id="pokeorder" class="pokeimg1" style="left: 300px; top:300px;font-size:15px;"></div>
+
+    <button onclick="fetchPokemon()" class="button"></button>
+    <div class="grafica">
+        <canvas id="miCanvas"></canvas>
+        </div>
+        <script>
+            const fetchPokemon=()=>{
+                const pokeNameImput=document.getElementById("pokeName");
+                let pokeName=pokeNameInput.value;
+                pokeName=pokeName.toLowerCase();
+                const url=`https://pokeapi.co/api/v2/pokemon/${pokeName}`;
+                }
+
+                fetch(url).then((res) => {
+                     if (res.status!= "200") {
+                         console.log(res);
+                        pokeImage("./pokemon-sad.gif") 
+         }
+         else {
+            return res.json();
+
+         }
+
+  }).then((data) => {
+
+    if (data) {
+
+        console.log(data);
+
+let pokeImg= data.sprites.front_default;
+pokeImage (pokeImg);
+
+let name= document.getElementById('pokename') 
+name.innerHTML=`Name: $(data.forms[0].name}`;
+
+let element1=document.getElementById('pokeHe') 
+element1.innerHTML=`Height: $(data.height)`;
+
+let element2=document.getElementById('pokewe') 
+element2.innerHTML=`Weight: ${data.weight}`;
+
+let element3=document.getElementById('pokeorder') 
+element3.innerHTML=`Order: #${data.order}`;
+
+let element4=document.getElementById('pokeid') 
+element4.innerHTML=`Id: #${data.id}`;
+
+let element5=document.getElementById('pokeitem') 
+element5.innerHTML=`Ability: ${data.abilities[0].ability.name}`;
+
+let element6=document.getElementById('poketype') 
+element6.innerHTML=`Type: ${data.types[0].type.name}`;
+
+let element7=document.getElementById('pokemove1') 
+element7.innerHTML=`Move 1: ${data.moves[0].move.name}`;
+
+let element8=document.getElementById('pokemove2') 
+element8.innerHTML= `Move 2: ${data.moves[1].move.name}`;
+
+let element9=document.getElementById('pokemove3') 
+element9.innerHTML=`Move 3: ${data.moves[2].move.name}`;
+
+let element10=document.getElementById('pokemove4') 
+element10.innerHTML=`Move 4: ${data.moves[3].move.name}`;
+
+const miCanvas=document.getElementById("miCanvas").getContext("2d"); 
+if(window.miCanva != undefined)
+window.miCanva.destroy();
+window.miCanva=new Chart (miCanvas, {}
+,type: "bar");
+data: {}
+    labels: ["HP", "Attack", "Defense", "Special-A", "Special-D", "Speed"],
+datasets;[
+{
+
+
+            }
+        </script>
+        <script src="chart.js"></script>
+    
+</body>
+</html>
